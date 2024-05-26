@@ -12,7 +12,10 @@ public class AreaMain {
                 new CalcTriangle(scanner),
                 new CalcRightTriangle(scanner),
                 new CalcDullTriangle(scanner),
-                new CalcVersatileTriangle(scanner)
+                new CalcVersatileTriangle(scanner),
+                new CalcParallelogram(scanner),
+                new CalcArbitraryQuadrilateral(scanner),
+                new CalcNGon(scanner)
         };
 
         for (int i = 0; i < areaCalculators.length; i++) {

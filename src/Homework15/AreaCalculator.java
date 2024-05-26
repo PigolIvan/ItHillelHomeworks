@@ -22,7 +22,7 @@ class CalcCircle extends AreaCalculator {
         System.out.print("Введіть радіус круга: ");
         double radius = scanner.nextDouble() + '\n';
         double area = Math.PI * Math.pow(radius, 2);
-        System.out.println("Площа круга: " + area);
+        System.out.println("Площа круга: " + area + "см^2");
     }
 
     @Override
@@ -44,7 +44,7 @@ class CalcRectangle extends AreaCalculator {
         System.out.print("Введіть ширину: ");
         double width = scanner.nextDouble() + '\n';
         double area = width * length;
-        System.out.println("Площа прямокутника: " + area);
+        System.out.println("Площа прямокутника: " + area + "см^2");
     }
     @Override
     protected String getTask() {
@@ -63,7 +63,7 @@ class CalcSquare extends AreaCalculator {
         System.out.println("Введіть сторону квадрата: ");
         double side = scanner.nextDouble() + '\n';
         double area = Math.pow(side, 2);
-        System.out.println("Площа квадрату: " + area);
+        System.out.println("Площа квадрату: " + area + "см^2");
     }
     @Override
     protected String getTask() {
@@ -85,7 +85,7 @@ class CalcTriangle extends AreaCalculator {
         System.out.print("Введіть сторону трикутника: ");
         double side = scanner.nextDouble() + '\n';
         double area = (Math.pow(side, 2) + Math.sqrt(3)) / 4;
-        System.out.println("Площа трикутника: " + area);
+        System.out.println("Площа трикутника: " + area + "см^2");
     }
 
     @Override
@@ -110,7 +110,7 @@ class CalcRightTriangle extends AreaCalculator {
         System.out.print("Введіть другий катет: ");
         double side_2 = scanner.nextDouble() + '\n';
         double area = (side_1 * side_2) / 2;
-        System.out.println("Площа прямокутного трикутника: " + area);
+        System.out.println("Площа прямокутного трикутника: " + area + "см^2");
     }
 
     @Override
@@ -135,7 +135,7 @@ class CalcDullTriangle extends AreaCalculator {
         System.out.print("Введіть висоту трикутника: ");
         double height = scanner.nextDouble() + '\n';
         double area = (backbone * height) / 2;
-        System.out.println("Площа тупокутного трикутника: " + area);
+        System.out.println("Площа тупокутного трикутника: " + area  + "см^2");
     }
 
     @Override
@@ -165,11 +165,63 @@ class CalcVersatileTriangle extends AreaCalculator {
         //p = (a + b + c)/2
         double p = (side_1 + side_2 + side_3) / 2;
         double area = Math.sqrt(p * (p - side_1) * (p - side_2) * (p - side_3));
-        System.out.println("Площа різностороннього трикутника: " + area);
+        System.out.println("Площа різностороннього трикутника: " + area + "см^2");
     }
 
     @Override
     protected String getTask() {
         return "Порахувати площу різностороннього трикутника.";
     }
+}
+class CalcParallelogram extends AreaCalculator {
+    private final Scanner scanner;
+    public CalcParallelogram(Scanner scanner){this.scanner = scanner;}
+
+    @Override
+    protected void calcSomething() {
+        System.out.println("Введіть сторону: ");
+        double side = scanner.nextDouble() + '\n';
+        System.out.println("Введіть висоту проведену до цьої сторони: ");
+        double height = scanner.nextDouble() + '\n';
+        double area = side * height;
+        System.out.println("Площа паралелограма: " + area + "см^2");
+    }
+    @Override
+    protected String getTask(){return "Порахувати площу паралелограма.";}
+}
+class CalcArbitraryQuadrilateral extends AreaCalculator {
+    private final Scanner scanner;
+    public CalcArbitraryQuadrilateral(Scanner scanner){this.scanner = scanner;}
+
+    @Override
+    protected void calcSomething() {
+        System.out.println("Введіть першу діагональ: ");
+        double diagonal_1 = scanner.nextDouble() + '\n';
+        System.out.println("Введіть другу діагональ: ");
+        double diagonal_2 = scanner.nextDouble() + '\n';
+        System.out.println("Введіть кут точки перетину діагоналей: ");
+        int angle = scanner.nextInt() + '\n';
+        double area = 0.5 * diagonal_1 * diagonal_2 * Math.sin(angle);
+        System.out.println("Площа довільного чотирикутника: " + area + "см^2");
+    }
+    @Override
+    protected String getTask(){return "Порахувати площу довільного чотирикутника.";}
+}
+class CalcNGon extends AreaCalculator {
+    //Площа n-кутника, де n якесь число, яке більше нуля.
+    private final Scanner scanner;
+    public CalcNGon(Scanner scanner){this.scanner = scanner;}
+
+    @Override
+    protected void calcSomething(){
+        System.out.println("Введіть кількість сторін фігури: ");
+        int n = scanner.nextInt() + '\n';
+        System.out.println("Враховуйте, що сторони мають бути рівними.");
+        System.out.println("Введіть сторону: ");
+        double side = scanner.nextDouble() + '\n';
+        double area = (n*Math.pow(side, 2)/(4*Math.tan(180/n)));
+        System.out.println("Площа n-кутника: " + area + "см^2");
+    }
+    @Override
+    protected String getTask(){return "Порахувати площу n-кутника.";}
 }
